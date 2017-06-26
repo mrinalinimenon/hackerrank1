@@ -1,0 +1,94 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static int getTotalX(int[] a, int[] b){
+        int largest_in_A=1;
+        int smallest_in_B=100;
+        
+        for(int i=0;i<a.length;i++)
+        {
+            if(a[i]>=largest_in_A)
+            {
+                largest_in_A= a[i];                
+            }
+        }
+     //  System.out.println("Largest number in A is: "+largest_in_A);
+        for(int j=0;j<b.length;j++)
+        {
+            if(b[j]<=smallest_in_B)
+            {
+                smallest_in_B= b[j];
+            }
+        }
+     // System.out.println("Smallest number in B is: "+smallest_in_B);
+        int random_number=a[0]; 
+        int count=0;
+        boolean val_in_A=false;
+        boolean val=false;
+        for(;random_number<=smallest_in_B;random_number++)
+        {
+        for(int k=0;k<a.length;k++)
+        {
+            if(random_number%a[k]==0)
+            {
+                val_in_A=true;
+            }
+            else
+            {
+                val_in_A=false;
+                random_number+=1;
+            }
+        }
+         
+        for(int l=0;l<b.length;l++)
+        {
+           
+            if(b[l]%random_number==0)
+            {
+                val=true;
+             //  System.out.println("Condition 1 is for B set is true.");
+            }
+            else
+            {
+                val=false;
+              //System.out.println("Condition 2 is for B set is true.");
+                break;
+            }
+            
+        }
+        if(val==true)
+        {
+            count+=1;
+           // System.out.println("Valus is true. Count is incremented");
+        }
+           // System.out.println("New Random number is: "+random_number);
+            
+           
+        }
+        
+       //System.out.println("Count is: "+count);
+        return count;
+        
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int[] a = new int[n];
+        for(int a_i=0; a_i < n; a_i++){
+            a[a_i] = in.nextInt();
+        }
+        int[] b = new int[m];
+        for(int b_i=0; b_i < m; b_i++){
+            b[b_i] = in.nextInt();
+        }
+        int total = getTotalX(a, b);
+        System.out.println(total);
+    }
+}
