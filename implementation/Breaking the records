@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static int[] getRecord(int[] s){
+        // Complete this function
+        int highest_prev= s[0];
+        int highest_next= s[0];
+        int count_highest=0;
+        int count_lowest=0;
+        int lowest_prev= s[0];
+         int lowest_next= s[0];
+        int result[]= new int[2];
+        for(int i=1;i<s.length;i++)
+        {
+            if(s[i]>=highest_prev)
+            {
+                highest_next=s[i];
+            }
+           // System.out.println("Highest previous: "+highest_prev);
+           // System.out.println("Highest next: "+highest_next);
+            if( highest_next>highest_prev)
+            {
+               count_highest+=1; 
+                highest_prev=highest_next;
+                
+            }
+            if(s[i]<=lowest_prev)
+            {
+                lowest_next=s[i];
+            }
+           // System.out.println("Lowest previous: "+lowest_prev);
+            //System.out.println("Lowest next: "+lowest_next);
+            if( lowest_next<lowest_prev)
+            {
+               count_lowest+=1; 
+                lowest_prev=lowest_next;
+                
+            }
+            result[0]=count_highest;
+            result[1]=count_lowest;
+            //System.out.println("Count highest:"+count_highest);
+            // System.out.println("Count lowest:"+count_lowest);
+        }
+        return result;
+        
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] s = new int[n];
+        for(int s_i=0; s_i < n; s_i++){
+            s[s_i] = in.nextInt();
+        }
+        int[] result = getRecord(s);
+        String separator = "", delimiter = " ";
+        for (Integer val : result) {
+            System.out.print(separator + val);
+            separator = delimiter;
+        }
+        System.out.println("");
+    }
+}
