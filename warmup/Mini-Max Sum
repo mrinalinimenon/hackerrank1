@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int[] arr = new int[5];
+        for(int arr_i=0; arr_i < 5; arr_i++){
+            arr[arr_i] = in.nextInt();
+        }
+        long maximum_value = arr[0];
+        long minimum_value = arr[0];
+        
+        for(int i=0;i<5;i++)
+            {
+            if(arr[i]>maximum_value)
+                {
+                maximum_value= arr[i];
+                    
+            }
+            else if(arr[i]<minimum_value)
+                {
+                minimum_value=arr[i];
+               
+            }
+            
+        }
+       long new_minimum_value=minimum_value;
+       long new_maximum_value=maximum_value;
+        
+        for(int j=0;j<5;j++)
+            {
+            
+            if(arr[j]<maximum_value && arr[j]!=minimum_value)
+                {
+                new_minimum_value=new_minimum_value+arr[j];
+                }
+            
+            if(arr[j]>minimum_value && arr[j]!=maximum_value)
+                {
+                new_maximum_value=new_maximum_value+arr[j];
+            }
+           if(arr[j]==maximum_value && arr[j]==minimum_value)
+               {
+               new_maximum_value=maximum_value*4;
+               new_minimum_value=minimum_value*4;
+           }
+        }
+       
+        System.out.print(new_minimum_value+ " "+ new_maximum_value);
+    
+    }
+}
