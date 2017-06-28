@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner scan= new Scanner(System.in);
+        String time_in_AMPM = scan.next();
+        String time[]= time_in_AMPM.split(":");
+        String hours = time[0];
+        String minutes= time[1];
+        String seconds= time[2].substring(0,2);
+        if(time[2].contains("AM"))
+            {
+            if(hours.equals("12"))
+                {
+                hours="00";
+                    System.out.println(hours + ":" + minutes + ":" + seconds);
+            }
+            else { System.out.println(hours + ":" + minutes + ":" + seconds); }
+        }
+        if(time[2].contains("PM") && hours.equals("12"))
+        {
+            System.out.println(hours + ":" + minutes + ":" + seconds);
+        }
+        else if(time[2].contains("PM"))
+            {
+            int tempHours= Integer.parseInt(hours);
+            tempHours+=12;
+            hours= Integer.toString(tempHours);
+            System.out.println(hours + ":" + minutes + ":" + seconds);
+        }
+    }
+}
