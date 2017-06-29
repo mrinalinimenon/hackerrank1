@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static String bonAppetit(int n, int k, int b, int[] ar) {
+        // Complete this function
+        int total_Charge=0;
+        int total_Charge_Anna=0;
+        
+        int result=0;
+        for(int i=0;i<n;i++)
+        {
+            total_Charge+=ar[i];
+        }
+        total_Charge_Anna= (total_Charge-ar[k])/2;  
+        if (total_Charge_Anna==b)
+        {
+            return "Bon Appetit";
+        }
+        else
+        {
+            result=b-total_Charge_Anna;
+        }
+        return Integer.toString(result);
+    }
+    
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int k = in.nextInt();
+        int[] ar = new int[n];
+        for(int ar_i = 0; ar_i < n; ar_i++){
+            ar[ar_i] = in.nextInt();
+        }
+        int b = in.nextInt();
+        String result = bonAppetit(n, k, b, ar);
+        System.out.println(result);
+    }
+}
